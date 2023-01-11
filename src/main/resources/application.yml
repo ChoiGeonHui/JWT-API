@@ -1,0 +1,31 @@
+logging:
+  level:
+    org:
+    springframework: debug
+    objectweb: debug
+
+    root: info
+    com.adnstyle.jwtapi: debug
+
+spring:
+  profiles:
+    active: local
+
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://14.63.226.76:9606/ghchoi_db?useSSL=false&allowMultiQueries=true
+    username: ghchoi
+    password: '!rjsgmL1228'
+
+  security:
+    user:
+      name: user
+      password: 1234
+
+mybatis:
+  mapper-locations: mybatis/**/*.xml
+
+server:
+  port: 8090
+  servlet:
+    context-path: "/"

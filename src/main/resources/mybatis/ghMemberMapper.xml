@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.adnstyle.jwtapi.repository.GhMemberRepository">
+
+    <resultMap id="simpleMember" type="com.adnstyle.jwtapi.domain.GhMember">
+        <id property="seq"                  column="seq"/>
+        <result property="id"               column="id"/>
+        <result property="password"     column="password"/>
+        <result property="name"             column="name"/>
+        <result property="email"            column="email"/>
+        <result property="phone"            column="phone"/>
+        <result property="role"             column="role"/>
+        <result property="provider"         column="provider"/>
+        <result property="providerId"       column="provider_id"/>
+        <result property="delYN"            column="del_yn"/>
+        <result property="createdMember"    column="created_member"/>
+        <result property="lockYN"           column="lock_yn"/>
+        <result property="failCount"        column="fail_count"/>
+    </resultMap>
+
+    <sql id="selectSimple">
+        select
+            seq,
+            id,
+            password,
+            name,
+            email,
+            phone,
+            role,
+            provider,
+            provider_id,
+            del_yn,
+            created_member,
+            lock_yn,
+            fail_count
+        from
+            gh_member
+    </sql>
+
+
+    <sql id="wherePack">
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="email != null">
+                and email = #{email}
+            </if>
+            <if test="name != null">
+                and name = #{name}
+            </if>
+            <if test="phone != null">
+                and phone = #{phone}
+            </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCount" resultType="int">
+        select count(*)
+        from gh_member;
+    </select>
+
+<!--    <select id="selectMemberList" resultMap="simpleMember">-->
+<!--        <include refid="selectSimple"/>-->
+<!--    </select>-->
+
+
+    <select id="selectMember" resultMap="simpleMember">
+        <include refid="selectSimple"/>
+        <include refid="wherePack"/>
+    </select>
+
+
+
+
+</mapper>
