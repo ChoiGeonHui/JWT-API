@@ -5,23 +5,28 @@
     <resultMap id="simpleToken" type="com.adnstyle.jwtapi.domain.RefreshTokenList">
         <id property="seq"                  column="seq"/>
         <result property="id"               column="id"/>
-        <result property="token"            column="token"/>
+        <result property="refresh"            column="refresh"/>
+        <result property="access"            column="access"/>
     </resultMap>
 
 
     <select id="selectToken" resultMap="simpleToken">
-        select seq, id, token from refresh_token_list
+        select seq, id, refresh, access from refresh_token_list
         where id = #{id}
     </select>
 
     <select id="selectToken2" resultMap="simpleToken">
-        select seq, id, token from refresh_token_list
-        where id = #{id} and token = #{token}
+        select seq, id, refresh, access from refresh_token_list
+        where id = #{id} and refresh = #{refresh}
     </select>
 
     <update id="updateToken">
-        update refresh_token_list set token = #{token}
-        where id = #{id}
+        update refresh_token_list
+        set
+            refresh = #{refresh},
+            access = #{access}
+        where
+            id = #{id}
     </update>
 
 </mapper>

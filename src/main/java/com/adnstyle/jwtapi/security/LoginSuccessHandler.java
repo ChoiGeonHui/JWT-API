@@ -41,7 +41,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         setHeaderRefreshToken(response, refreshToken); // refresh token 헤더에 추가
 
         RefreshTokenList refreshTokenList = new RefreshTokenList();
-        refreshTokenList.setToken(refreshToken);
+        refreshTokenList.setRefresh(refreshToken);
+        refreshTokenList.setAccess(accessToken);
         refreshTokenList.setId(ghMember.getGhMember().getId());
 
         refreshTokenService.updateToken(refreshTokenList); //생성된 refresh token DB에 저장

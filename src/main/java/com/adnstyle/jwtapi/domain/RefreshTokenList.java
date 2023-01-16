@@ -13,6 +13,8 @@ public class RefreshTokenList {
 
     private String id;
 
-    private String token;
+    private String refresh;
+
+    private String access;
 
 }
