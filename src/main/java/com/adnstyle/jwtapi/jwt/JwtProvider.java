@@ -112,17 +112,17 @@ public class JwtProvider {
         }
 
         catch (SecurityException | MalformedJwtException | IllegalArgumentException exception) {
-            log.info("잘못된 JWT 입니다");
+            log.debug("잘못된 JWT 입니다");
             request.setAttribute("exception", ErrorCode.WRONG_TYPE_TOKEN.getCode());
         }
 
         catch (ExpiredJwtException exception) {
-            log.info("만료된 JWT 입니다");
+            log.debug("만료된 JWT 입니다");
             request.setAttribute("exception", ErrorCode.EXPIRED_TOKEN.getCode());
         }
 
         catch (UnsupportedJwtException exception) {
-            log.info("지원하지 않는 JWT 입니다");
+            log.debug("지원하지 않는 JWT 입니다");
             request.setAttribute("exception", ErrorCode.UNSUPPORTED_TOKEN.getCode());
         }
 

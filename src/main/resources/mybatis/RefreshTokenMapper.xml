@@ -5,7 +5,7 @@
     <resultMap id="simpleToken" type="com.adnstyle.jwtapi.domain.RefreshTokenList">
         <id property="seq"                  column="seq"/>
         <result property="id"               column="id"/>
-        <result property="token"     column="token"/>
+        <result property="token"            column="token"/>
     </resultMap>
 
 

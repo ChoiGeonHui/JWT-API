@@ -37,16 +37,17 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         String accessToken = jwtProvider.createToken(ghMember.getGhMember().getId(), ghMember.getGhMember().getRole());//accessToken 생성
         String refreshToken = jwtProvider.createRefreshToken(ghMember.getGhMember().getId(), ghMember.getGhMember().getRole()); // refreshToken 생성
 
-        setHeaderAccessToken(response, accessToken);
-        setHeaderRefreshToken(response, refreshToken);
+        setHeaderAccessToken(response, accessToken); //access token 헤더에 추가
+        setHeaderRefreshToken(response, refreshToken); // refresh token 헤더에 추가
 
         RefreshTokenList refreshTokenList = new RefreshTokenList();
         refreshTokenList.setToken(refreshToken);
         refreshTokenList.setId(ghMember.getGhMember().getId());
 
-        refreshTokenService.updateToken(refreshTokenList);
+        refreshTokenService.updateToken(refreshTokenList); //생성된 refresh token DB에 저장
 
-        log.debug("token : "+ accessToken);
+        log.debug("AccessToken : "+ accessToken);
+        log.debug("RefreshToken : "+ refreshToken);
 
         response.sendRedirect("/member/success");
     }

@@ -1,6 +1,5 @@
 package com.adnstyle.jwtapi.controller;
 
-import com.adnstyle.jwtapi.service.GhMemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +13,6 @@ import java.util.Map;
 @RequestMapping("/member")
 public class GhMemberController {
 
-
-    private final GhMemberService ghMemberService;
 
 
     @ResponseBody
@@ -36,12 +33,7 @@ public class GhMemberController {
     public String loginFail() {
         return "login fail";
     }
-//
-//    @ResponseBody
-//    @RequestMapping("/test")
-//    public String test() {
-//        return "member count";
-//    }
+
 
 
 

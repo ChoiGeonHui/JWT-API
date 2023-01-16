@@ -44,7 +44,7 @@ public class RefreshTokenService {
         RefreshTokenList refreshTokenList2 = refreshTokenRepository.selectToken2(refreshTokenList);
 
         if (refreshTokenList2 == null) {
-            return "잘못된 refreshToken 입니다.";
+            return "저장된 refreshToken이 다릅니다.";
         }
 
         String newAccessToken = jwtProvider.createToken(claims.getSubject(),(String) claims.get("role"));
