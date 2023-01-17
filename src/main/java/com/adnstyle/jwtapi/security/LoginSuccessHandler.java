@@ -45,7 +45,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         refreshTokenList.setAccess(accessToken);
         refreshTokenList.setId(ghMember.getGhMember().getId());
 
-        refreshTokenService.updateToken(refreshTokenList); //생성된 refresh token DB에 저장
+        refreshTokenService.updateToken(refreshTokenList); //생성된 token DB에 저장
 
         log.debug("AccessToken : "+ accessToken);
         log.debug("RefreshToken : "+ refreshToken);

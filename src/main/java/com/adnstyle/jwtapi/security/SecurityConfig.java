@@ -51,9 +51,9 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling()
-                .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+                .authenticationEntryPoint(new CustomAuthenticationEntryPoint()) //인증과정에서 인증실패 또는 인증헤더를 못 받았을 경우 401 에러 대신 실행되는 클래스
                 .and()
-                .addFilterBefore(new JwtFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new JwtFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class) // 서비스 요청마다 실행되는 필터
         ;
 
         http
@@ -61,14 +61,14 @@ public class SecurityConfig {
                 .usernameParameter("id").passwordParameter("password")
                 .loginPage("/member/login")
                 .loginProcessingUrl("/member/sginIn") //해당 주소로 오는 로그인을 가로채서 요청 처리
-                .failureHandler(loginFailHandler)
-                .successHandler(loginSuccessHandler)
+                .failureHandler(loginFailHandler) // 로그인 실패시 이동
+                .successHandler(loginSuccessHandler) // 로그인 성공시 이동
 
                 .and()
                 .csrf()
                 .disable()
                 .exceptionHandling()
-                .accessDeniedPage("/access/no-role")
+                .accessDeniedPage("/access/no-role") //권한이 없는 서비스 요청시
 
 
                 .and()
@@ -81,7 +81,7 @@ public class SecurityConfig {
 
         http
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS); // 세션 사용하지 않음
         http
                 .headers()
                 .frameOptions().sameOrigin();

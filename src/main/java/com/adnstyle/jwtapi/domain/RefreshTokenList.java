@@ -9,9 +9,9 @@ import org.apache.ibatis.type.Alias;
 @NoArgsConstructor
 public class RefreshTokenList {
 
-    private Long seq;
+    private Long seq; //식별자
 
-    private String id;
+    private String id; //아이디
 
     private String refresh;
 
